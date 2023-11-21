@@ -4,7 +4,7 @@
 - This repository holds my solution for homework 7.
 
 # Overview
-## This repository holds a qmd file for homework 7, which was rendered into an html file to display the work. The qmd file contains many different tasks. Additionally, there is an sql file that was used to create the tables and how the tables relate to each other with primary and foreign keys. 
+This repository holds a qmd file for homework 7, which was rendered into an html file to display the work. The qmd file contains many different tasks. Additionally, there is an sql file that was used to create the tables and how the tables relate to each other with primary and foreign keys. 
 ### hw7-ddl.sql creates 
 - a skills table
 - a people table 
