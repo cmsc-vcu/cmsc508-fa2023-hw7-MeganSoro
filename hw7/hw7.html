@@ -3373,11 +3373,11 @@ z-index: 1000;
 
 </header>
 
-<p>This document contains</p>
+<p>This document contains the environmental set up for connecting to the database. The database was created in the sql file and is connected to an individual phpMyAdmin to display the database. The first part loads in the credentials from the .env file in the home directory. Next there is an overview of the project, a crows foot diagram, the tables, and sample queries. Below is the github which stores all the code.</p>
 <p>GITHUB URL: <a href="https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-MeganSoro" class="uri">https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-MeganSoro</a></p>
 <section id="overview-and-description" class="level2">
 <h2 class="anchored" data-anchor-id="overview-and-description">Overview and description</h2>
-<p>(briefly describe the project and the database)</p>
+<p>This project goal (briefly describe the project and the database)</p>
 </section>
 <section id="crows-foot-diagram" class="level2">
 <h2 class="anchored" data-anchor-id="crows-foot-diagram">Crows-foot diagram</h2>
@@ -3387,15 +3387,32 @@ z-index: 1000;
 <div>
 <div>
 <pre class="mermaid mermaid-js">erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
+    PEOPLE ||--o{ SKILLS : have
+    PEOPLE }|..|{ ROLES : have
+
+    PEOPLE{
+        int people_id
         string first_name
         string last_name
+        string email
+        string linkin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        string date_joined
     }
-    DELIVERY-ADDRESS {
-        int id
+    SKILLS {
+        int skills_id
+        string name 
+        string description 
+        string tag
+        string url
+        int time_commitment
+    }
+    ROLES{
+        int role_id
+        string role_name
+        int sort_priority
     }
 </pre>
 </div>
