@@ -10,7 +10,7 @@ format:
         code-copy: true
 ---
 
-This document contains 
+This document contains the environmental set up for connecting to the database. The database was created in the sql file and is connected to an individual phpMyAdmin to display the database. The first part loads in the credentials from the .env file in the home directory. Next there is an overview of the project, a crows foot diagram, the tables, and sample queries. Below is the github which stores all the code. 
 
 GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-MeganSoro>
 
@@ -90,6 +90,7 @@ except Exception as e:
 
 ## Overview and description
 
+This project goal 
 (briefly describe the project and the database)
 
 ## Crows-foot diagram
@@ -99,15 +100,32 @@ except Exception as e:
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
+    PEOPLE ||--o{ SKILLS : have
+    PEOPLE }|..|{ ROLES : have
+
+    PEOPLE{
+        int people_id
         string first_name
         string last_name
+        string email
+        string linkin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        string date_joined
     }
-    DELIVERY-ADDRESS {
-        int id
+    SKILLS {
+        int skills_id
+        string name 
+        string description 
+        string tag
+        string url
+        int time_commitment
+    }
+    ROLES{
+        int role_id
+        string role_name
+        int sort_priority
     }
 ```
 
