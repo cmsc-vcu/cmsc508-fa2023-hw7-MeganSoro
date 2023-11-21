@@ -166,9 +166,10 @@ select * from peopleskills;
 # sort_priority is an integer and is used to provide an order for sorting roles
 
 CREATE TABLE roles(
-    roles_id int, 
+    role_id int, 
     role_name varchar(255),
-    sort_priority int
+    sort_priority int,
+    primary key (role_id)
 );
 
 
@@ -177,13 +178,29 @@ CREATE TABLE roles(
 # Designer, Developer, Recruit, Team Lead, Boss, Mentor
 # Sort priority is assigned numerically in the order listed above (Designer=10, Developer=20, Recruit=30, etc.)
 
+INSERT INTO roles (role_id, role_name, sort_priority) values 
+    (1, 'Designer', 10),
+    (2, 'Developer', 20),
+    (3, 'Recruit', 30),
+    (4, 'Team Lead', 40),
+    (5, 'Boss', 50),
+    (6, 'Mentor', 60);
 
+select * from roles;
 
 # Section 10
 # Create peopleroles( id, people_id, role_id, date_assigned )
 # None of the fields can be null.  ID can be auto_increment
 
-
+CREATE TABLE peopleroles(
+    people_roles_id int auto_increment,
+    people_id int not null,
+    role_id int not null,
+    date_assigned date default (current_date),
+    primary key(people_roles_id),
+    foreign key (people_id) references people (people_id),
+    foreign key (role_id) references roles (role_id)
+);
 
 # Section 11
 # Populate peopleroles
@@ -198,3 +215,20 @@ CREATE TABLE roles(
 # Person 9 is Developer
 # Person 10 is Developer and Designer
 
+insert into peopleroles (people_id, role_id ) values
+    (1,2),
+    (2,5),
+    (2,6),
+    (3,2),
+    (3,2),
+    (4,3),
+    (5,3),
+    (6,2),
+    (6,1),
+    (7,1),
+    (8,1),
+    (8,4),
+    (9,2),
+    (10,2),
+    (10,1);
+    
