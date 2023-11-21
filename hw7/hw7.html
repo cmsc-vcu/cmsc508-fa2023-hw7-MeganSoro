@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Megan Sorochin">
-<meta name="dcterms.date" content="2023-11-20">
+<meta name="dcterms.date" content="2023-11-21">
 
 <title>Homework 7 - Creating a resume database</title>
 <style>
@@ -20,40 +20,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -3363,7 +3329,7 @@ z-index: 1000;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 20, 2023</p>
+      <p class="date">November 21, 2023</p>
     </div>
   </div>
   
@@ -3377,18 +3343,20 @@ z-index: 1000;
 <p>GITHUB URL: <a href="https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-MeganSoro" class="uri">https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-MeganSoro</a></p>
 <section id="overview-and-description" class="level2">
 <h2 class="anchored" data-anchor-id="overview-and-description">Overview and description</h2>
-<p>This project goal (briefly describe the project and the database)</p>
+<p>The goal of this project is to create a database in sql and create the desired relationships within the tables. Additionally, it was a goal to populate each of the tables with their desired attributes.This project is a database for people, skills and roles. Within this database there are tables that relate each of these entities together using primary and foreign keys.</p>
 </section>
 <section id="crows-foot-diagram" class="level2">
 <h2 class="anchored" data-anchor-id="crows-foot-diagram">Crows-foot diagram</h2>
-<p>(add a description of the diagram and what the reader is seeing.)</p>
+<p>Below is the crows foot diagram for the database created. As seen below, People (one to many) have relationship with peopleskills (zero or many). Peopleskills (zero to many) have a relationship with skills (one to many). Additionally, People (one to many) has a relationship with peopleroles (one to many). Peopleroles (one to many) has a relationship with roles (one to many).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <div>
 <pre class="mermaid mermaid-js">erDiagram
-    PEOPLE ||--o{ SKILLS : have
-    PEOPLE }|..|{ ROLES : have
+    PEOPLE }|--o{ PEOPLESKILLS : have
+    PEOPLESKILLS }o--|{ SKILLS : have
+    PEOPLE }|--|{ PEOPLEROLES : have
+    PEOPLEROLES }|--|{ ROLES : have
 
     PEOPLE{
         int people_id
@@ -3414,6 +3382,18 @@ z-index: 1000;
         string role_name
         int sort_priority
     }
+    PEOPLESKILLS{
+        int id
+        int skills_id
+        int people_id
+        string date_aquired
+    }
+    PEOPLEROLES{
+        int people_roles_id
+        int people_id
+        int role_id
+        string date_assigned
+    }
 </pre>
 </div>
 </div>
@@ -3425,10 +3405,10 @@ z-index: 1000;
 <p>For the people, skills, and roles tables, provide a description of each table and it’s contents. Then provide a listing of the entire table.</p>
 <section id="people-table" class="level3">
 <h3 class="anchored" data-anchor-id="people-table">People table</h3>
-<p>The <em>people</em> table contains elements that describe …</p>
+<p>The <em>people</em> table contains elements that describe each person in the database. It gives them an id, their full name, their email, their linkedin url, their headshot url, their discord handle, a brief bio, and their date joined</p>
 <p>Below is a list of data in the <em>people</em> table.</p>
 <div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -3577,13 +3557,166 @@ z-index: 1000;
 </section>
 <section id="skills-table" class="level3">
 <h3 class="anchored" data-anchor-id="skills-table">Skills table</h3>
-<p>The <em>skills</em> table contains elements that describe …</p>
+<p>The <em>skills</em> table contains elements that describe the given skills. It gives each skill an id, a name, a description, a tag, a url, and a time_commitment.</p>
 <p>Below is a list of data in the <em>skills</em> table.</p>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">skills_id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">description</th>
+<th data-quarto-table-cell-role="th">tag</th>
+<th data-quarto-table-cell-role="th">url</th>
+<th data-quarto-table-cell-role="th">time_commitment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>snowboarding</td>
+<td>riding down mountains on snow with a board</td>
+<td>Skill 1</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>painting</td>
+<td>putting paint on a canvas</td>
+<td>Skill 2</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>reading</td>
+<td>reading text</td>
+<td>Skill 3</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>drawing</td>
+<td>drawing with material on paper</td>
+<td>Skill 4</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>skiing</td>
+<td>riding down mountains on snow with skis</td>
+<td>Skill 5</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>6</td>
+<td>hunting</td>
+<td>killing an animal with a bow</td>
+<td>Skill 6</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>7</td>
+<td>java</td>
+<td>writing a program in java</td>
+<td>Skill 7</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>8</td>
+<td>lifting</td>
+<td>picking up heavy things</td>
+<td>Skill 8</td>
+<td>None</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="roles-table" class="level3">
 <h3 class="anchored" data-anchor-id="roles-table">Roles table</h3>
-<p>The <em>roles</em> table contains elements that describe …</p>
+<p>The <em>roles</em> table contains elements that describe the given role. It gives each role an id, a name, and a sort priority.</p>
 <p>Below is a list of data in the <em>roles</em> table.</p>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">role_id</th>
+<th data-quarto-table-cell-role="th">role_name</th>
+<th data-quarto-table-cell-role="th">sort_priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Designer</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Developer</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Recruit</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>Team Lead</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>Boss</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>6</td>
+<td>Mentor</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sample-queries" class="level2">
@@ -3592,15 +3725,8 @@ z-index: 1000;
 </section>
 <section id="list-skill-names-tags-and-descriptions-ordered-by-name" class="level1">
 <h1>List skill names, tags, and descriptions ordered by name</h1>
-<p>(here a sample query)</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="ss">f&quot;&quot;&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">select * from people</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">&quot;&quot;&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>(and here is a sample result from the query)</p>
-<div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -3772,7 +3898,7 @@ z-index: 1000;
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
-<p>(Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment. Pause and breath before writing - I’m trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)</p>
+<p>This assignment helped solidify using the extensions like poetry, so the set up was very quick and simple. The “hw7-ddl.sql” was relatively easy to fill out, especially given the lectures that helped go through it. This assignment really helped me understand how to actually create tables and attributes and also populate them. The “hw7.qmd” file was a little more difficult. The crows foot diagram seemed pretty easy, but once doing it proved to be a little more confusing than anticipated. Additionally, in this file, getting the specific queries to show up with sql, was rather confusing. This class is my first time using it so it’s not my strong suit.</p>
 </section>
 </section>
 

@@ -90,18 +90,19 @@ except Exception as e:
 
 ## Overview and description
 
-This project goal 
-(briefly describe the project and the database)
+The goal of this project is to create a database in sql and create the desired relationships within the tables. Additionally, it was a goal to populate each of the tables with their desired attributes.This project is a database for people, skills and roles. Within this database there are tables that relate each of these entities together using primary and foreign keys. 
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+Below is the crows foot diagram for the database created. As seen below, People (one to many) have relationship with peopleskills (zero or many). Peopleskills (zero to many) have a relationship with skills (one to many). Additionally, People (one to many) has a relationship with peopleroles (one to many). Peopleroles (one to many) has a relationship with roles (one to many).
 
 ```{mermaid}
 %%| echo: false
 erDiagram
-    PEOPLE ||--o{ SKILLS : have
-    PEOPLE }|..|{ ROLES : have
+    PEOPLE }|--o{ PEOPLESKILLS : have
+    PEOPLESKILLS }o--|{ SKILLS : have
+    PEOPLE }|--|{ PEOPLEROLES : have
+    PEOPLEROLES }|--|{ ROLES : have
 
     PEOPLE{
         int people_id
@@ -127,6 +128,18 @@ erDiagram
         string role_name
         int sort_priority
     }
+    PEOPLESKILLS{
+        int id
+        int skills_id
+        int people_id
+        string date_aquired
+    }
+    PEOPLEROLES{
+        int people_roles_id
+        int people_id
+        int role_id
+        string date_assigned
+    }
 ```
 
 ## Examples of data in the database
@@ -135,7 +148,7 @@ For the people, skills, and roles tables, provide a description of each table an
 
 ### People table
 
-The *people* table contains elements that describe ... 
+The *people* table contains elements that describe each person in the database. It gives them an id, their full name, their email, their linkedin url, their headshot url, their discord handle, a brief bio, and their date joined 
 
 Below is a list of data in the *people* table.
 
@@ -158,51 +171,65 @@ df
 
 ### Skills table
 
-The *skills* table contains elements that describe ... 
+The *skills* table contains elements that describe the given skills. It gives each skill an id, a name, a description, a tag, a url, and a time_commitment. 
 
 Below is a list of data in the *skills* table.
 
 ```{python}
 #| echo: false
 #| eval: true
-
+sql = f"""
+select * from skills;
+"""
 ## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
 ```
+
 
 ### Roles table
 
-The *roles* table contains elements that describe ... 
+The *roles* table contains elements that describe the given role. It gives each role an id, a name, and a sort priority.  
 
 Below is a list of data in the *roles* table.
 
 ```{python}
 #| echo: false
 #| eval: true
-
+sql = f"""
+select * from roles;
+"""
 ## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
 ```
-
 
 ## Sample queries
 
 Let's explore the database!
 
-# List skill names, tags, and descriptions ordered by name
-
-(here a sample query)
-
-```{python}
-sql = f"""
-select * from people
-"""
-```
-
-
-(and here is a sample result from the query)
+### List skill names, tags, and descriptions ordered by name
 
 ```{python}
 #| echo: false
 #| eval: true
+
+sql = f"""
+select * from people
+"""
+
 try:
     df = pd.read_sql(sql,cnx)
     df
@@ -241,5 +268,5 @@ df
 
 ## Reflection
 
-(Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment.  Pause and breath before writing - I'm trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)
+This assignment helped solidify using the extensions like poetry, so the set up was very quick and simple. The "hw7-ddl.sql" was relatively easy to fill out, especially given the lectures that helped go through it. This assignment really helped me understand how to actually create tables and attributes and also populate them. The "hw7.qmd" file was a little more difficult. The crows foot diagram seemed pretty easy, but once doing it proved to be a little more confusing than anticipated. Additionally, in this file, getting the specific queries to show up with sql, was rather confusing. This class is my first time using it so it's not my strong suit. 
 
