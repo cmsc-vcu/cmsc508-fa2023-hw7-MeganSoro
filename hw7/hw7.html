@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Megan Sorochin">
-<meta name="dcterms.date" content="2023-11-21">
+<meta name="dcterms.date" content="2023-11-22">
 
 <title>Homework 7 - Creating a resume database</title>
 <style>
@@ -3292,9 +3292,9 @@ z-index: 1000;
   <li><a href="#skills-table" id="toc-skills-table" class="nav-link" data-scroll-target="#skills-table">Skills table</a></li>
   <li><a href="#roles-table" id="toc-roles-table" class="nav-link" data-scroll-target="#roles-table">Roles table</a></li>
   </ul></li>
-  <li><a href="#sample-queries" id="toc-sample-queries" class="nav-link" data-scroll-target="#sample-queries">Sample queries</a></li>
-  <li><a href="#list-skill-names-tags-and-descriptions-ordered-by-name" id="toc-list-skill-names-tags-and-descriptions-ordered-by-name" class="nav-link" data-scroll-target="#list-skill-names-tags-and-descriptions-ordered-by-name">List skill names, tags, and descriptions ordered by name</a>
+  <li><a href="#sample-queries" id="toc-sample-queries" class="nav-link" data-scroll-target="#sample-queries">Sample queries</a>
   <ul class="collapse">
+  <li><a href="#list-skill-names-tags-and-descriptions-ordered-by-name" id="toc-list-skill-names-tags-and-descriptions-ordered-by-name" class="nav-link" data-scroll-target="#list-skill-names-tags-and-descriptions-ordered-by-name">List skill names, tags, and descriptions ordered by name</a></li>
   <li><a href="#list-people-names-and-email-addresses-ordered-by-last_name" id="toc-list-people-names-and-email-addresses-ordered-by-last_name" class="nav-link" data-scroll-target="#list-people-names-and-email-addresses-ordered-by-last_name">List people names and email addresses ordered by last_name</a></li>
   <li><a href="#list-skill-names-of-person-1" id="toc-list-skill-names-of-person-1" class="nav-link" data-scroll-target="#list-skill-names-of-person-1">List skill names of Person 1</a></li>
   <li><a href="#list-people-names-with-skill-6" id="toc-list-people-names-with-skill-6" class="nav-link" data-scroll-target="#list-people-names-with-skill-6">List people names with Skill 6</a></li>
@@ -3303,8 +3303,8 @@ z-index: 1000;
   <li><a href="#list-names-and-tags-of-unused-skills" id="toc-list-names-and-tags-of-unused-skills" class="nav-link" data-scroll-target="#list-names-and-tags-of-unused-skills">List names and tags of unused skills</a></li>
   <li><a href="#list-people-names-and-skill-names-with-the-boss-role" id="toc-list-people-names-and-skill-names-with-the-boss-role" class="nav-link" data-scroll-target="#list-people-names-and-skill-names-with-the-boss-role">List people names and skill names with the BOSS role</a></li>
   <li><a href="#list-ids-and-names-of-unused-roles" id="toc-list-ids-and-names-of-unused-roles" class="nav-link" data-scroll-target="#list-ids-and-names-of-unused-roles">List ids and names of unused roles</a></li>
-  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
   </ul></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
   </ul>
 </nav>
 </div>
@@ -3329,7 +3329,7 @@ z-index: 1000;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 21, 2023</p>
+      <p class="date">November 22, 2023</p>
     </div>
   </div>
   
@@ -3408,7 +3408,7 @@ z-index: 1000;
 <p>The <em>people</em> table contains elements that describe each person in the database. It gives them an id, their full name, their email, their linkedin url, their headshot url, their discord handle, a brief bio, and their date joined</p>
 <p>Below is a list of data in the <em>people</em> table.</p>
 <div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="131">
 <div>
 
 
@@ -3560,7 +3560,7 @@ z-index: 1000;
 <p>The <em>skills</em> table contains elements that describe the given skills. It gives each skill an id, a name, a description, a tag, a url, and a time_commitment.</p>
 <p>Below is a list of data in the <em>skills</em> table.</p>
 <div class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="132">
 <div>
 
 
@@ -3661,7 +3661,7 @@ z-index: 1000;
 <p>The <em>roles</em> table contains elements that describe the given role. It gives each role an id, a name, and a sort priority.</p>
 <p>Below is a list of data in the <em>roles</em> table.</p>
 <div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="133">
 <div>
 
 
@@ -3722,11 +3722,10 @@ z-index: 1000;
 <section id="sample-queries" class="level2">
 <h2 class="anchored" data-anchor-id="sample-queries">Sample queries</h2>
 <p>Let’s explore the database!</p>
-</section>
-<section id="list-skill-names-tags-and-descriptions-ordered-by-name" class="level1">
-<h1>List skill names, tags, and descriptions ordered by name</h1>
+<section id="list-skill-names-tags-and-descriptions-ordered-by-name" class="level3">
+<h3 class="anchored" data-anchor-id="list-skill-names-tags-and-descriptions-ordered-by-name">List skill names, tags, and descriptions ordered by name</h3>
 <div class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="134">
 <div>
 
 
@@ -3734,137 +3733,59 @@ z-index: 1000;
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">people_id</th>
-<th data-quarto-table-cell-role="th">first_name</th>
-<th data-quarto-table-cell-role="th">last_name</th>
-<th data-quarto-table-cell-role="th">email</th>
-<th data-quarto-table-cell-role="th">linkedin_url</th>
-<th data-quarto-table-cell-role="th">headshot_url</th>
-<th data-quarto-table-cell-role="th">discord_handle</th>
-<th data-quarto-table-cell-role="th">brief_bio</th>
-<th data-quarto-table-cell-role="th">date_joined</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">description</th>
+<th data-quarto-table-cell-role="th">tag</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-<td>None</td>
-<td>Person 1</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 1</td>
+<td>drawing</td>
+<td>drawing with material on paper</td>
+<td>Skill 4</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2</td>
-<td>None</td>
-<td>Person 2</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 2</td>
+<td>hunting</td>
+<td>killing an animal with a bow</td>
+<td>Skill 6</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>3</td>
-<td>None</td>
-<td>Person 3</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 3</td>
+<td>java</td>
+<td>writing a program in java</td>
+<td>Skill 7</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>4</td>
-<td>None</td>
-<td>Person 4</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 4</td>
+<td>lifting</td>
+<td>picking up heavy things</td>
+<td>Skill 8</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>5</td>
-<td>None</td>
-<td>Person 5</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 5</td>
+<td>painting</td>
+<td>putting paint on a canvas</td>
+<td>Skill 2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>6</td>
-<td>None</td>
-<td>Person 6</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 6</td>
+<td>reading</td>
+<td>reading text</td>
+<td>Skill 3</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
-<td>7</td>
-<td>None</td>
-<td>Person 7</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 7</td>
+<td>skiing</td>
+<td>riding down mountains on snow with skis</td>
+<td>Skill 5</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
-<td>8</td>
-<td>None</td>
-<td>Person 8</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 8</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>9</td>
-<td>None</td>
-<td>Person 9</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 9</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>10</td>
-<td>None</td>
-<td>Person 10</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>None</td>
-<td>Oct 10</td>
+<td>snowboarding</td>
+<td>riding down mountains on snow with a board</td>
+<td>Skill 1</td>
 </tr>
 </tbody>
 </table>
@@ -3872,34 +3793,330 @@ z-index: 1000;
 </div>
 </div>
 </div>
+</section>
 <section id="list-people-names-and-email-addresses-ordered-by-last_name" class="level3">
 <h3 class="anchored" data-anchor-id="list-people-names-and-email-addresses-ordered-by-last_name">List people names and email addresses ordered by last_name</h3>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="135">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">last_name</th>
+<th data-quarto-table-cell-role="th">email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Person 1</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Person 10</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Person 2</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Person 3</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Person 4</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Person 5</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Person 6</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Person 7</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Person 8</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Person 9</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-skill-names-of-person-1" class="level3">
 <h3 class="anchored" data-anchor-id="list-skill-names-of-person-1">List skill names of Person 1</h3>
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="136">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">last_name</th>
+<th data-quarto-table-cell-role="th">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Person 1</td>
+<td>snowboarding</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Person 1</td>
+<td>reading</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Person 1</td>
+<td>hunting</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-people-names-with-skill-6" class="level3">
 <h3 class="anchored" data-anchor-id="list-people-names-with-skill-6">List people names with Skill 6</h3>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="137">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">last_name</th>
+<th data-quarto-table-cell-role="th">tag</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Person 1</td>
+<td>Skill 6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Person 5</td>
+<td>Skill 6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Person 7</td>
+<td>Skill 6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Person 8</td>
+<td>Skill 6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Person 9</td>
+<td>Skill 6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-people-with-a-developer-role" class="level3">
 <h3 class="anchored" data-anchor-id="list-people-with-a-developer-role">List people with a DEVELOPER role</h3>
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="138">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">last_name</th>
+<th data-quarto-table-cell-role="th">role_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Person 1</td>
+<td>Developer</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Person 3</td>
+<td>Developer</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Person 6</td>
+<td>Developer</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Person 9</td>
+<td>Developer</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Person 10</td>
+<td>Developer</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-names-and-email-addresses-of-people-without-skills" class="level3">
 <h3 class="anchored" data-anchor-id="list-names-and-email-addresses-of-people-without-skills">List names and email addresses of people without skills</h3>
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="139">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">last_name</th>
+<th data-quarto-table-cell-role="th">email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Person 4</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-names-and-tags-of-unused-skills" class="level3">
 <h3 class="anchored" data-anchor-id="list-names-and-tags-of-unused-skills">List names and tags of unused skills</h3>
+<div class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="140">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">tag</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>java</td>
+<td>Skill 7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>lifting</td>
+<td>Skill 8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-people-names-and-skill-names-with-the-boss-role" class="level3">
 <h3 class="anchored" data-anchor-id="list-people-names-and-skill-names-with-the-boss-role">List people names and skill names with the BOSS role</h3>
+<div class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="141">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">last_name</th>
+<th data-quarto-table-cell-role="th">role_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Person 2</td>
+<td>Boss</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="list-ids-and-names-of-unused-roles" class="level3">
 <h3 class="anchored" data-anchor-id="list-ids-and-names-of-unused-roles">List ids and names of unused roles</h3>
+<div class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="142">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">role_id</th>
+<th data-quarto-table-cell-role="th">role_name</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
 <p>This assignment helped solidify using the extensions like poetry, so the set up was very quick and simple. The “hw7-ddl.sql” was relatively easy to fill out, especially given the lectures that helped go through it. This assignment really helped me understand how to actually create tables and attributes and also populate them. The “hw7.qmd” file was a little more difficult. The crows foot diagram seemed pretty easy, but once doing it proved to be a little more confusing than anticipated. Additionally, in this file, getting the specific queries to show up with sql, was rather confusing. This class is my first time using it so it’s not my strong suit.</p>
-</section>
 </section>
 
 </main>

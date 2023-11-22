@@ -220,7 +220,7 @@ insert into peopleroles (people_id, role_id ) values
     (2,5),
     (2,6),
     (3,2),
-    (3,2),
+    (3,4),
     (4,3),
     (5,3),
     (6,2),

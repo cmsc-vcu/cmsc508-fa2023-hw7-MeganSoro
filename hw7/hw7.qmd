@@ -227,7 +227,14 @@ Let's explore the database!
 #| eval: true
 
 sql = f"""
-select * from people
+SELECT
+    name,
+    description,
+    tag 
+from 
+    skills
+order BY
+    name
 """
 
 try:
@@ -244,27 +251,229 @@ df
 
 ### List people names and email addresses ordered by last_name
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    last_name,
+    email
+from 
+    people
+order BY
+    last_name
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List skill names of Person 1
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    last_name,
+    name
+from 
+    peopleskills a
+    inner join people b on (a.people_id = b.people_id)
+    inner join skills c on (a.skills_id = c.skills_id)
+WHERE
+    last_name = "Person 1";
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List people names with Skill 6
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    last_name,
+    tag
+from 
+    peopleskills a
+    inner join people b on (a.people_id = b.people_id)
+    inner join skills c on (a.skills_id = c.skills_id)
+WHERE
+    tag = "Skill 6";
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List people with a DEVELOPER role
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    last_name,
+    role_name
+from 
+    peopleroles a
+    inner join people b on (a.people_id = b.people_id)
+    inner join roles c on (a.role_id = c.role_id)
+WHERE
+    role_name = "DEVELOPER";
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List names and email addresses of people without skills
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    last_name,
+    email
+from 
+    people a
+    left join peopleskills b on (a.people_id = b.people_id)
+WHERE
+    b.people_id is NULL;
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List names and tags of unused skills
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    name,
+    tag
+from 
+    skills a
+    left join peopleskills b on (a.skills_id = b.skills_id)
+WHERE
+    b.skills_id is NULL;
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List people names and skill names with the BOSS role
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    last_name,
+    role_name
+from 
+    peopleroles a
+    inner join people b on (a.people_id = b.people_id)
+    inner join roles c on (a.role_id = c.role_id)
+WHERE
+    role_name = "Boss";
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ### List ids and names of unused roles
 
+```{python}
+#| echo: false
+#| eval: true
+
+sql = f"""
+SELECT
+    role_id,
+    role_name
+from 
+    roles
+WHERE
+    1=0;
+"""
+
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+
+```
 
 ## Reflection
 
